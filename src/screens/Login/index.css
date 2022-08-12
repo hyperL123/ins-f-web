@@ -1,14 +1,14 @@
 .instagramTitle {
-    font-family: "Sofia", sans-serif;
-    font-size: 56px;
-  }
+  font-family: "Sofia", sans-serif;
+  font-size: 56px;
+}
 
-  .icon {
-    z-index: 2;
-  }
-  
-  .images {
-    z-index: 1;
-    left:30px;
-    top: 30px;
-  }
+.icon {
+  z-index: 2;
+}
+
+.images {
+  z-index: 1;
+  left: 30px;
+  top: 30px;
+}
