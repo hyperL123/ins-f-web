@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GetTheApp from "../../Login/components/GetTheApp";
 import ORBanner from "../../Login/components/OrBanner";
-import Title from "../../Login/components/Title";
+import Logo from "../../../share-components/Logo";
 import Subtitle from "./Subtitle";
 import { gql, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
@@ -72,8 +72,8 @@ const Box = () => {
   const submitCss = `text-white bg-blue-200 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 p-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800s`;
 
   return (
-    <div className="m-4 flex w-128 flex-col items-center justify-center bg-[white]">
-      <Title />
+    <div className="w-128 m-4 flex flex-col items-center justify-center bg-[white]">
+      <Logo />
       <Subtitle />
       <div className="mt-6 grid w-80">
         {/* <button type="submit" className="text-white bg-blue-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 p-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800s">Log in with FaceBook</button> */}

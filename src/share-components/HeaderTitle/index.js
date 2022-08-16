@@ -1,14 +1,13 @@
-import React from 'react'
-import {Helmet} from 'react-helmet-async'
-const HeaderTitle = ({title}) => {
+import React from "react";
+import { Helmet } from "react-helmet-async";
+const HeaderTitle = ({ title }) => {
   return (
     <div>
-        <Helmet>
-            <title>Instrgram | {title}</title>
-        </Helmet>
-        
+      <Helmet>
+        <title>Instagram | {title}</title>
+      </Helmet>
     </div>
-  )
-}
+  );
+};
 
-export default HeaderTitle
+export default HeaderTitle;

@@ -5,8 +5,8 @@ import { isLoggedInVar } from "../../apollo";
 import { useReactiveVar } from "@apollo/client";
 import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser";
-import Title from "../../screens/Login/components/Title";
-import Avatar from "../Avatar"
+import Logo from "../Logo";
+import Avatar from "../Avatar";
 const Header = () => {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   console.log("inside the Header islogin", isLoggedIn);
@@ -15,7 +15,7 @@ const Header = () => {
   return (
     <div className="flex w-full justify-between border-b bg-[#FFFFFF] p-5">
       <div>
-        <Title size={"text-3xl"} />
+        <Logo size={"text-3xl"} />
       </div>
 
       {isLoggedIn ? (
