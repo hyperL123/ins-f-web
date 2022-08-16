@@ -36,6 +36,12 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 });
 
 export const client = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      User: {
+        keyFields: (obj) => `Iser:${obj.userName}`,
+      },
+    },
+  }),
   link: concat(authMiddleware, httpLink),
 });

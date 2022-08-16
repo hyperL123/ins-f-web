@@ -13,22 +13,15 @@ const ME_QUERY = gql`
   }
 `;
 function useUser() {
-  console.log("inside the useUser");
   const isLoggedIn = useReactiveVar(isLoggedInVar);
-  console.log("isLoggedIn:", isLoggedIn);
   const { data, error } = useQuery(ME_QUERY, {
     skip: !isLoggedIn,
   });
+  if (data?.me === null) {
+    console.log("there is a token but token did not work on the backend");
+    logUserOut();
+  }
 
-  useEffect(() => {
-    console.log(data);
-    if (data?.me === null) {
-      console.log("there is a token but token did not work on the backend");
-      logUserOut();
-    }
-  }, [data]);
-
-  console.log(data);
   return { data };
 }
 

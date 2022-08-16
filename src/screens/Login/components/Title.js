@@ -1,7 +1,8 @@
 import React from "react";
 
-const Title = () => {
-  return <p className="instagramTitle my-6">Instagram</p>;
+const Title = ({ size = "text-3xl" }) => {
+  const TITLE_CSS = `${size} instagramTitle`;
+  return <p className={TITLE_CSS}>Instagram-Clone</p>;
 };
 
 export default Title;

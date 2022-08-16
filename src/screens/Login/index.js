@@ -6,7 +6,7 @@ import PageTitle from "../Shared/PageTitle";
 
 const Login = () => {
   return (
-    <div className="flex h-screen items-center justify-center bg-[#ededed]">
+    <div className="flex h-screen justify-center bg-[#ededed]">
       <PageTitle title="Log in" />
       <LImage />
       <RBox />

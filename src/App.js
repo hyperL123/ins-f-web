@@ -6,12 +6,12 @@ import {
   Navigate,
 } from "react-router-dom";
 import { isLoggedInVar, darkVar, client } from "./apollo";
+import { HelmetProvider } from "react-helmet-async";
+import Layout from "./share-components/Layout";
 import Home from "./screens/Home";
 import Login from "./screens/Login";
-import { ThemeProvider } from "styled-components";
 import SignUp from "./screens/SignUp";
-import { HelmetProvider } from "react-helmet-async";
-import HeaderLayout from "./screens/Header/HeaderLayout";
+import Profile from "./screens/Profile";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -25,15 +25,15 @@ function App() {
               <Route
                 path="/"
                 element={
-                  isLoggedIn ? (
-                    <HeaderLayout children={<Home />}></HeaderLayout>
-                  ) : (
-                    <Login />
-                  )
+                  isLoggedIn ? <Layout children={<Home />}></Layout> : <Login />
                 }
               />
               <Route path="/sign-up" element={<SignUp />} />
-              <Route path="*" element={<Navigate to="/" />} />
+              <Route
+                path="/users/:userName"
+                element={<Layout children={<Profile />}></Layout>}
+              />
+              {/* <Route path="*" element={<Navigate to="/" />} /> */}
             </Routes>
           </Router>
         </HelmetProvider>

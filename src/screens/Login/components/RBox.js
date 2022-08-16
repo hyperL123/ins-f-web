@@ -10,7 +10,7 @@ import Title from "./Title";
 const RBox = () => {
   const items = { item1: "Phone number, username, or email", item2: "Pasword" };
   return (
-    <div className="m-4 flex w-128 flex-col items-center justify-center bg-[white]">
+    <div className="m-4 flex w-30rem flex-col items-center justify-center bg-[white]">
       <Title />
       <RInPut items={items} />
       <ORBanner />
