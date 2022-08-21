@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Comment from "./Comment";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { BsEmojiSmile } from "react-icons/bs";
-import useUser from "../../../hooks/useUser"
+import useUser from "../../../hooks/useUser";
 
 const CREATE_COMMENT_MUTATION = gql`
   mutation ($photoId: Int!, $payload: String!) {
@@ -25,28 +25,31 @@ function Comments({
   photoId,
   createdAt,
 }) {
+  console.log(comments, "COMMENTS ORGIN");
   const { data: userData } = useUser();
   const createCommentUpdate = (cache, result) => {
-    console.log(result);
     const {
       data: {
         createComment: { ok, id },
       },
     } = result;
-    const { comment } = getValues();
-    setValue("comment", "");
+    console.log(comments, "In CreateaCOmment Update");
+
     if (ok && userData?.me) {
+      const { payload } = getValues();
       const newComment = {
         __typename: "Comment",
         createdAt: Date.now() + "",
         id,
         isMine: true,
-        payload: comment,
+        payload,
         user: {
           ...userData.me,
         },
       };
-      console.log(newComment);
+      console.log(comments, "after new Comment");
+      setValue("payload", "");
+      console.log("Create COmment Update");
       const cacheData = cache.writeFragment({
         id: `Comment:${id}`,
         data: newComment,
@@ -63,18 +66,19 @@ function Comments({
           }
         `,
       });
-      console.log("cacheData,", cacheData);
+
       cache.modify({
         id: `Photo:${photoId}`,
         fields: {
           comments(prev) {
             return [...prev, cacheData];
           },
-          comments(prev) {
+          commentsNumber(prev) {
             return prev + 1;
           },
         },
       });
+      console.log(comments, "END");
     }
   };
   const [createaCommentMutation, { loading }] = useMutation(
@@ -85,7 +89,7 @@ function Comments({
   );
   const { register, handleSubmit, setValue, getValues } = useForm();
   const onValid = (data) => {
-    const { comment } = data;
+    const { payload } = data;
 
     if (loading) {
       return;
@@ -93,7 +97,7 @@ function Comments({
     createaCommentMutation({
       variables: {
         photoId,
-        payload: comment,
+        payload,
       },
     });
   };
@@ -104,7 +108,7 @@ function Comments({
         <AiFillCheckCircle className="mx-1" fill="#0095f6" />
         <div className="text">
           {" "}
-          {caption?.split(" ").map((word, index) =>
+          {caption?.split(" ")?.map((word, index) =>
             /#[\w]+/.test(word) ? (
               <Fragment key={index}>
                 <Link
@@ -133,7 +137,7 @@ function Comments({
       </div>
 
       <div className="border-t text-xs">
-        {comments.map((comment) => {
+        {comments?.map((comment) => {
           return <Comment comment={comment} photoId={photoId} />;
         })}
       </div>
@@ -142,7 +146,7 @@ function Comments({
         <div className="ml-2">
           <form onSubmit={handleSubmit(onValid)}>
             <input
-              {...register("comment", {
+              {...register("payload", {
                 required: "Please enter your comment",
                 maxLength: {
                   value: 100,

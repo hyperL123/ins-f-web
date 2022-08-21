@@ -4,11 +4,13 @@ import {
   InMemoryCache,
   createHttpLink,
 } from "@apollo/client";
-import { HttpLink, ApolloLink, concat } from "@apollo/client";
+import { HttpLink, ApolloLink, from } from "@apollo/client";
+import { createUploadLink } from "apollo-upload-client";
 const TOKEN = "token";
 
 export const isLoggedInVar = makeVar(Boolean(localStorage.getItem("token")));
 export const darkVar = makeVar(false);
+export const showVar = makeVar(false);
 
 export const logUserIn = (token) => {
   console.log("set token");
@@ -34,14 +36,14 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 
   return forward(operation);
 });
-
+const uploadLink = createUploadLink({ uri: "http://localhost:4000/graphql" });
 export const client = new ApolloClient({
   cache: new InMemoryCache({
     typePolicies: {
       User: {
-        keyFields: (obj) => `Iser:${obj.userName}`,
+        keyFields: (obj) => `User:${obj.userName}`,
       },
     },
   }),
-  link: concat(authMiddleware, httpLink),
+  link: from([authMiddleware, uploadLink, httpLink]),
 });

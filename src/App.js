@@ -7,12 +7,12 @@ import {
 } from "react-router-dom";
 import { isLoggedInVar, darkVar, client } from "./apollo";
 import { HelmetProvider } from "react-helmet-async";
-import Layout from "./share-components/Layout";
+import Layout from "./shared-components/Layout";
 import Home from "./screens/Home";
 import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import Profile from "./screens/Profile";
-
+import NotFound from "./screens/NotFound";
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   const darMode = useReactiveVar(darkVar);
@@ -33,7 +33,7 @@ function App() {
                 path="/users/:userName"
                 element={<Layout children={<Profile />}></Layout>}
               />
-              {/* <Route path="*" element={<Navigate to="/" />} /> */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Router>
         </HelmetProvider>

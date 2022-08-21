@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GetTheApp from "../../Login/components/GetTheApp";
 import ORBanner from "../../Login/components/OrBanner";
-import Logo from "../../../share-components/Logo";
+import Logo from "../../../shared-components/Logo";
 import Subtitle from "./Subtitle";
 import { gql, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
@@ -49,7 +49,7 @@ const Box = () => {
       setError("result", { type: "custom", message: "Wrong password" });
     }
     setaccountCreated(true);
-    setTimeout(() => navigate("/login"), 5000);
+    setTimeout(() => navigate("/"), 5000);
   };
   const [createAccount, { loading, error }] = useMutation(
     CREATE_ACCOUNT_MUTATION,

@@ -5,10 +5,10 @@
 [X]Log out\
 [X]Sign up\
 [X]Home Page\
-...|\
-...--[X]Picture\
-...--[X]Comment\
-........|\
-........--[X]Like Comment\
-........--[X]Write Comment\
-[...]Profile Page\
+$~$|\
+$~$--[X]Picture\
+$~$--[X]Comment\
+$~~~~$|\
+$~~~~$--[X]Like Comment\
+$~~~~$--[X]Write Comment\
+[...]Profile Page

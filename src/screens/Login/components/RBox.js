@@ -6,7 +6,7 @@ import RInPut from "./RInPut";
 import LoginFacebook from "./LoginFacebook";
 import ORBanner from "./OrBanner";
 import SignUp from "./SignUp";
-import Logo from "../../../share-components/Logo";
+import Logo from "../../../shared-components/Logo";
 const RBox = () => {
   const items = { item1: "Phone number, username, or email", item2: "Pasword" };
   return (
