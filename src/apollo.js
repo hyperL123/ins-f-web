@@ -13,7 +13,6 @@ export const darkVar = makeVar(false);
 export const showVar = makeVar(false);
 
 export const logUserIn = (token) => {
-  console.log("set token");
   localStorage.setItem(TOKEN, token);
   isLoggedInVar(true);
 };
