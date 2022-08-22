@@ -34,7 +34,6 @@ const Box = () => {
     register,
     formState: { errors },
     handleSubmit,
-    getValues,
     setError,
     clearErrors,
   } = useForm({
@@ -42,21 +41,17 @@ const Box = () => {
   });
   const onCompleted = (data) => {
     const {
-      createAccount: { ok, error },
+      createAccount: { ok },
     } = data;
-    console.log(ok);
     if (!ok) {
       setError("result", { type: "custom", message: "Wrong password" });
     }
     setaccountCreated(true);
     setTimeout(() => navigate("/"), 5000);
   };
-  const [createAccount, { loading, error }] = useMutation(
-    CREATE_ACCOUNT_MUTATION,
-    {
-      onCompleted,
-    }
-  );
+  const [createAccount, { loading }] = useMutation(CREATE_ACCOUNT_MUTATION, {
+    onCompleted,
+  });
   const onSubmitValid = (data) => {
     if (loading) {
       return;

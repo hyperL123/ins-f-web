@@ -25,7 +25,6 @@ function Comments({
   photoId,
   createdAt,
 }) {
-  console.log(comments, "COMMENTS ORGIN");
   const { data: userData } = useUser();
   const createCommentUpdate = (cache, result) => {
     const {
@@ -33,7 +32,6 @@ function Comments({
         createComment: { ok, id },
       },
     } = result;
-    console.log(comments, "In CreateaCOmment Update");
 
     if (ok && userData?.me) {
       const { payload } = getValues();
@@ -47,9 +45,7 @@ function Comments({
           ...userData.me,
         },
       };
-      console.log(comments, "after new Comment");
       setValue("payload", "");
-      console.log("Create COmment Update");
       const cacheData = cache.writeFragment({
         id: `Comment:${id}`,
         data: newComment,

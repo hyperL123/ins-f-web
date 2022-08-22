@@ -30,9 +30,8 @@ const RInPut = ({ items }) => {
 
   const onCompleted = (data) => {
     const {
-      login: { ok, error, token },
+      login: { ok, token },
     } = data;
-    console.log(ok);
     if (!ok) {
       setError("result", { type: "custom", message: "Wrong password" });
     }
@@ -41,7 +40,7 @@ const RInPut = ({ items }) => {
     }
     navigate("/");
   };
-  const [login, { loading, error }] = useMutation(LOGIN_MUTATION, {
+  const [login, { loading }] = useMutation(LOGIN_MUTATION, {
     onCompleted,
   });
   const onSubmitValid = () => {

@@ -1,11 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { AiFillInstagram, AiOutlineHome, AiOutlineUser } from "react-icons/ai";
-import {
-  BsPerson,
-  BsBookmark,
-  BsExclamationCircle,
-  BsLayersHalf,
-} from "react-icons/bs";
+import { AiOutlineHome } from "react-icons/ai";
+import { BsPerson, BsBookmark, BsExclamationCircle } from "react-icons/bs";
 import { FcPicture } from "react-icons/fc";
 import { CgAddR } from "react-icons/cg";
 
@@ -29,24 +24,20 @@ const UPLOAD_PHOTO_MUTATION = gql`
 `;
 
 const Header = () => {
-  const ref = useRef();
+  const refCreateNewPost = useRef();
+  const refPreviewPicture = useRef();
+  const refMenu = useRef();
   const [caption, setCaption] = useState("");
   const [file, setFile] = useState();
-  const [uploadPhotoMutation, { loading, error }] = useMutation(
-    UPLOAD_PHOTO_MUTATION,
-    {
-      variables: {
-        fileImage: file,
-        caption,
-      },
-      // update: updateToggleLike,
-    }
-  );
+  const [uploadPhotoMutation] = useMutation(UPLOAD_PHOTO_MUTATION, {
+    variables: {
+      fileImage: file,
+      caption,
+    },
+    // update: updateToggleLike,
+  });
 
   const uploadPostData = () => {
-    // 👇️ update textarea value
-    console.log("Share");
-    console.log(caption);
     uploadPhotoMutation();
     setPreviewPicture(false);
   };
@@ -56,7 +47,6 @@ const Header = () => {
 
   const [wrongImageType, setWrongImageType] = useState(false);
   const isLoggedIn = useReactiveVar(isLoggedInVar);
-  console.log("inside the Header islogin", isLoggedIn);
   const { data } = useUser();
   const buttonCss = `rounded-md px-4 py-15 text-white font-semibold`;
   const uploadImage = (e) => {
@@ -72,8 +62,10 @@ const Header = () => {
       setToggleCreateNewPost(false);
       setPreviewPicture(true);
       setWrongImageType(false);
+      console.log("Ok picture");
     } else {
       setWrongImageType(true);
+      console.log("NOT Ok Picture");
     }
   };
 
@@ -83,8 +75,8 @@ const Header = () => {
       // then close the menu
       if (
         toggleCreateNewPost &&
-        ref.current &&
-        !ref.current.contains(e.target)
+        refCreateNewPost.current &&
+        !refCreateNewPost.current.contains(e.target)
       ) {
         setWrongImageType(false);
         setToggleCreateNewPost(false);
@@ -98,13 +90,51 @@ const Header = () => {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     };
   }, [toggleCreateNewPost]);
-  if (error)
-    return (
-      <div>
-        <div>{typeof file}</div>
-        {JSON.stringify(error, null, 2)}
-      </div>
-    );
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (
+        previewPicture &&
+        refPreviewPicture.current &&
+        !refPreviewPicture.current.contains(e.target)
+      ) {
+        setWrongImageType(false);
+        setPreviewPicture(false);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [previewPicture]);
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (
+        toggleMenu &&
+        refMenu.current &&
+        !refMenu.current.contains(e.target)
+      ) {
+        setWrongImageType(false);
+        setToggleMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [toggleMenu]);
+
   return (
     <div className="flex w-full justify-between border-b bg-[#FFFFFF] p-5">
       <div>
@@ -120,19 +150,22 @@ const Header = () => {
             <CgAddR className="ml-4" size={"2rem"} />
           </button>
 
-          <RiNavigationLine className="ml-4" size={"2rem"} />
-          <div className="relative inline-block">
+          <RiNavigationLine className="ml-4 text-gray-200" size={"2rem"} />
+          <div className="">
             {/* <Link className="ml-4" to={`/users/${data?.me?.userName}`}> */}
 
             {data?.me?.avatar ? (
               <button
-                className="ml-3 p-1"
+                className="ml-3  hidden overflow-hidden  p-1 md:block"
                 onClick={() => setToggleMenu(!toggleMenu)}
               >
                 <Avatar url={data?.me?.avatar} />
               </button>
             ) : (
-              <button onClick={() => setToggleMenu(!toggleMenu)}>
+              <button
+                onClick={() => setToggleMenu(!toggleMenu)}
+                className="hidden md:block"
+              >
                 <BsPerson className="text-3xl" />
               </button>
             )}
@@ -140,7 +173,10 @@ const Header = () => {
             {/* </Link> */}
 
             {toggleMenu && (
-              <div className="absolute right-0 mt-2 flex w-64 origin-top-right  flex-col justify-start bg-white p-2 shadow">
+              <div
+                className="absolute right-0 mt-2 flex w-64 origin-top-right  flex-col justify-start bg-white p-2 shadow"
+                ref={refMenu}
+              >
                 <Link className="" to={`/users/${data?.me?.userName}`}>
                   <div className=" flex flex-row items-center justify-start py-3 pl-2 text-lg">
                     <BsPerson className="mr-2" />
@@ -187,7 +223,7 @@ const Header = () => {
             <div className="fixed inset-0 z-50 flex items-center justify-center  overflow-y-auto overflow-x-hidden bg-zinc-800/80 outline-none focus:outline-none">
               <div
                 className="relative my-6 mx-auto w-auto max-w-4xl "
-                ref={ref}
+                ref={refCreateNewPost}
               >
                 {/*content*/}
                 <div className="relative flex w-full flex-col rounded-xl border-2 bg-white shadow-lg outline-none focus:outline-none">
@@ -237,8 +273,11 @@ const Header = () => {
       <>
         {previewPicture && (
           <>
-            <div className="fixed inset-0 z-50  flex  items-center justify-center bg-zinc-800/80 p-10">
-              <div className="flex w-full shrink-0  flex-col rounded-xl border-2 bg-white shadow-lg ">
+            <div className="fixed inset-0 z-50  flex  items-center justify-center bg-zinc-800/80 p-10 pt-10">
+              <div
+                className="flex w-full shrink-0  flex-col rounded-xl border-2 bg-white shadow-lg "
+                ref={refPreviewPicture}
+              >
                 {/*header*/}
                 <div className="flex flex-row items-center justify-between px-2 py-2">
                   <button
@@ -264,10 +303,10 @@ const Header = () => {
                   </button>
                 </div>
 
-                <div className="grid grid-cols-2 border-t-2">
+                <div className="grid max-w-5xl grid-cols-2 border-t-2">
                   <img
                     src={URL.createObjectURL(file)}
-                    className="h-auto w-full"
+                    className="w-full"
                     alt="Thumb"
                   />
                   <div className="flex flex-col ">

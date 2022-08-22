@@ -1,6 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
 import React from "react";
-import { logUserOut } from "../../apollo";
 
 import { PHOTO_FRAGMENT, COMMENT_FRAGMENT } from "../../gql-fragment/fragments";
 import Photo from "./components/Photo";

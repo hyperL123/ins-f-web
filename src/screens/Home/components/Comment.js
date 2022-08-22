@@ -12,10 +12,6 @@ const DELETE_COMMENT_MUTATION = gql`
 `;
 
 function Comment({ comment, photoId }) {
-  console.log("Test Case");
-  console.log(comment);
-  console.log(photoId);
-  console.log("Test Case");
   const updateDeleteComment = (cache, result) => {
     const {
       data: {

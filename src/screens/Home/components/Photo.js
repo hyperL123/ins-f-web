@@ -3,11 +3,9 @@ import { BiComment } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 import { FiSend } from "react-icons/fi";
 import { gql, useMutation } from "@apollo/client";
-import { comment } from "postcss";
 import Comments from "./Comments";
 import { Link } from "react-router-dom";
 import Avatar from "../../../shared-components/Avatar";
-import Delete from "./Delete";
 
 import { useState } from "react";
 import { showVar } from "../../../apollo";
@@ -46,7 +44,6 @@ function Photo({
       },
     } = result;
     if (ok) {
-      console.log("now it is ture");
       cache.writeFragment({
         id: `Photo:${id}`,
         fragment: gql`
@@ -72,7 +69,7 @@ function Photo({
   const updateDeletePhoto = (cache, result) => {
     const {
       data: {
-        deletePhoto: { ok, error },
+        deletePhoto: { ok },
       },
     } = result;
     if (ok) {
@@ -126,7 +123,7 @@ function Photo({
         </div>
       </div>
       <div className="items-center justify-center border-y">
-        <img className="object-contain" src={file} />
+        <img className="object-contain" src={file} alt="Post" />
       </div>
       <div className="PhotoData ">
         <div className="BANNER mt-5 flex flex-row justify-between px-5">
@@ -138,11 +135,11 @@ function Photo({
                 <BsHeartFill className="mr-6 text-3xl" fill="#FF6347" />
               )}
             </div>
-            <BiComment className="mr-6 text-4xl" />
-            <FiSend className="mr-6 text-4xl" />
+            <BiComment className="mr-6 text-4xl text-gray-200" />
+            <FiSend className="mr-6 text-4xl text-gray-200" />
           </div>
           <div className="flex items-center">
-            <BsBookmark className="text-3xl" />
+            <BsBookmark className="text-3xl text-gray-200" />
           </div>
         </div>
       </div>
