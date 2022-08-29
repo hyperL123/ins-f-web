@@ -22,7 +22,9 @@ export const logUserOut = () => {
   window.location.reload();
 };
 
-const httpLink = new HttpLink({ uri: "http://localhost:4000/graphql" });
+const httpLink = new HttpLink({
+  uri: "https://ins-backend-4.herokuapp.com/graphql",
+});
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   // add the authorization to the headers
@@ -35,7 +37,9 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 
   return forward(operation);
 });
-const uploadLink = createUploadLink({ uri: "http://localhost:4000/graphql" });
+const uploadLink = createUploadLink({
+  uri: "https://ins-backend-4.herokuapp.com/graphql",
+});
 export const client = new ApolloClient({
   cache: new InMemoryCache({
     typePolicies: {
@@ -44,5 +48,5 @@ export const client = new ApolloClient({
       },
     },
   }),
-  link: from([authMiddleware, uploadLink, httpLink]),
+  link: from([authMiddleware, uploadLink]),
 });

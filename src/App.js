@@ -13,6 +13,7 @@ import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import Profile from "./screens/Profile";
 import NotFound from "./screens/NotFound";
+import EditProfile from "./screens/EditProfile";
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   const darMode = useReactiveVar(darkVar);
@@ -32,6 +33,10 @@ function App() {
               <Route
                 path="/users/:userName"
                 element={<Layout children={<Profile />}></Layout>}
+              />
+              <Route
+                path="/users/:userName/edit"
+                element={<Layout children={<EditProfile />}></Layout>}
               />
               <Route path="*" element={<NotFound />} />
             </Routes>

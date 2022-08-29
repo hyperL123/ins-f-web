@@ -1,6 +1,6 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 import HeaderTitle from "../../shared-components/HeaderTitle";
 
@@ -121,7 +121,12 @@ const Profile = () => {
   });
   const buttonSelecter = (seeProfile) => {
     console.log(seeProfile?.isFollowing, "isfollowing");
-    if (seeProfile?.isMe) return <button>Edit Profile</button>;
+    if (seeProfile?.isMe)
+      return (
+        <Link className="" to={`/users/${userName}/edit`}>
+          <div className="border text-base font-normal">Edit Profile</div>
+        </Link>
+      );
     if (seeProfile?.isFollowing) {
       return <button onClick={unfollowUser}>Unfollow</button>;
     } else {
@@ -139,10 +144,13 @@ const Profile = () => {
           src={data?.seeProfile?.avatar}
         />
         <div className="profileInfo ml-8 flex flex-col p-1">
-          <div className="NameMssageFollow mb-4 text-3xl font-light">
-            {data?.seeProfile?.userName}
+          <div className="NameMssageFollow mb-4 flex items-center justify-center">
+            <div className="mr-4 text-3xl font-light">
+              {data?.seeProfile?.userName}
+            </div>
+            {buttonSelecter(data?.seeProfile)}
           </div>
-          {buttonSelecter(data?.seeProfile)}
+
           <div className="PostFollowersFollowing mb-5  flex">
             <div className="mr-6">0 post</div>
             <div className="mr-6">

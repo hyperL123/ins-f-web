@@ -10,6 +10,9 @@ const ME_QUERY = gql`
       avatar
       userName
       totalFollowing
+      firstName
+      lastName
+      bio
     }
   }
 `;

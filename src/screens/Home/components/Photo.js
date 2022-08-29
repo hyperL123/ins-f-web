@@ -143,9 +143,12 @@ function Photo({
           </div>
         </div>
       </div>
-      <div className="LIKE px-5 pt-4  pb-3 font-bold">
-        {likes === 1 ? `${likes} like` : `${likes} likes`}
-      </div>
+      {likes !== 0 && (
+        <div className="LIKE px-5 pt-4  pb-3 font-bold">
+          {likes === 1 ? `${likes} like` : `${likes} likes`}
+        </div>
+      )}
+
       <Comments
         author={user.userName}
         caption={caption}

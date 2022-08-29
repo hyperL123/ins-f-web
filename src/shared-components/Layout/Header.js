@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 import Logo from "../Logo";
 import Avatar from "../Avatar";
+import { FEED_QUERY } from "../../screens/Home";
 
 const UPLOAD_PHOTO_MUTATION = gql`
   mutation ($fileImage: Upload!, $caption: String) {
@@ -29,12 +30,13 @@ const Header = () => {
   const refMenu = useRef();
   const [caption, setCaption] = useState("");
   const [file, setFile] = useState();
+
   const [uploadPhotoMutation] = useMutation(UPLOAD_PHOTO_MUTATION, {
     variables: {
       fileImage: file,
       caption,
     },
-    // update: updateToggleLike,
+    refetchQueries: () => [{ query: FEED_QUERY }],
   });
 
   const uploadPostData = () => {

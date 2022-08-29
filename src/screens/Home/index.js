@@ -5,7 +5,7 @@ import { PHOTO_FRAGMENT, COMMENT_FRAGMENT } from "../../gql-fragment/fragments";
 import Photo from "./components/Photo";
 import HeaderTitle from "../../shared-components/HeaderTitle";
 
-const FEED_QUERY = gql`
+export const FEED_QUERY = gql`
   query {
     seeFeed {
       ...PhotoFragment
