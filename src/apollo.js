@@ -23,7 +23,7 @@ export const logUserOut = () => {
 };
 
 const httpLink = new HttpLink({
-  uri: "https://ins-backend-4.herokuapp.com/graphql",
+  uri: "http://localhost:4000/graphql",
 });
 
 const authMiddleware = new ApolloLink((operation, forward) => {
@@ -38,7 +38,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 const uploadLink = createUploadLink({
-  uri: "https://ins-backend-4.herokuapp.com/graphql",
+  uri: "http://localhost:4000/graphql",
 });
 export const client = new ApolloClient({
   cache: new InMemoryCache({

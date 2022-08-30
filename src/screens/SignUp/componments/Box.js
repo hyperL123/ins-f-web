@@ -17,6 +17,7 @@ const CREATE_ACCOUNT_MUTATION = gql`
   ) {
     createAccount(
       firstName: $firstName
+      lastName: $lastName
       userName: $userName
       email: $email
       password: $password
@@ -80,8 +81,8 @@ const Box = () => {
             {...register("firstName", {
               required: "Please enter your first Name",
               minLength: {
-                value: 5,
-                message: "First Name should be longer than 5 charaters",
+                value: 1,
+                message: "First Name should be longer than 1 charaters",
               },
             })}
             type="text"

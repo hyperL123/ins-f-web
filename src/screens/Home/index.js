@@ -18,7 +18,8 @@ export const FEED_QUERY = gql`
         ...CommentFragment
       }
       createdAt
-      isMine
+      
+      
     }
   }
   ${PHOTO_FRAGMENT}
@@ -28,7 +29,7 @@ export const FEED_QUERY = gql`
 const Home = () => {
   console.log(FEED_QUERY);
   const { data } = useQuery(FEED_QUERY);
-
+  console.log(data);
   return (
     <div className="my-7 flex w-full flex-col items-center">
       <HeaderTitle title="Home" />
