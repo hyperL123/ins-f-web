@@ -133,8 +133,8 @@ function Comments({
       </div>
 
       <div className="border-t text-xs">
-        {comments?.map((comment) => {
-          return <Comment comment={comment} photoId={photoId} />;
+        {comments?.map((comment, index) => {
+          return <Comment comment={comment} photoId={photoId} key={index} />;
         })}
       </div>
       <div className=" flex flex-row items-center border-t p-3">

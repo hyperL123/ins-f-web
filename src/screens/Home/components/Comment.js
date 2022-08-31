@@ -1,5 +1,4 @@
 import { gql, useMutation } from "@apollo/client";
-import { comment } from "postcss";
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { TiDeleteOutline } from "react-icons/ti";

@@ -38,20 +38,15 @@ const EditProfile = () => {
   const [editProfile, { loading }] = useMutation(EDIT_PROFILE_MUTATION, {});
   const [editAvatar] = useMutation(EDIT_PROFILE_AVATAR_MUTATION);
   const { userName } = useParams();
-  console.log(userName);
   const { data: userData } = useUser();
-  console.log(userData?.me?.userName === userName);
-  const [isUser, setIsUser] = useState(false);
+  const [user, setIsUser] = useState("");
   useEffect(() => {
-    setIsUser(userData?.me?.userName === userName);
+    setIsUser(userData?.me?.userName);
   }, []);
   const {
     register,
     formState: { errors },
-    handleSubmit,
     getValues,
-    setError,
-    clearErrors,
   } = useForm({
     mode: "onChange",
   });
@@ -96,7 +91,7 @@ const EditProfile = () => {
     }
   };
 
-  if (isUser)
+  if (user)
     return (
       <div className="flex w-full flex-row justify-between border bg-[#FAFAFAFA] p-3">
         <div className="w-1/3 border">

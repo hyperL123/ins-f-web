@@ -120,7 +120,6 @@ const Profile = () => {
     update: followUserUpdate,
   });
   const buttonSelecter = (seeProfile) => {
-    console.log(seeProfile?.isFollowing, "isfollowing");
     if (seeProfile?.isMe)
       return (
         <Link className="" to={`/users/${userName}/edit`}>

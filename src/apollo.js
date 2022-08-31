@@ -23,7 +23,7 @@ export const logUserOut = () => {
 };
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:4000/graphql",
+  uri: process.env.REACT_APP_DATABASE_API,
 });
 
 const authMiddleware = new ApolloLink((operation, forward) => {
@@ -38,7 +38,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 const uploadLink = createUploadLink({
-  uri: "http://localhost:4000/graphql",
+  uri: process.env.REACT_APP_DATABASE_API,
 });
 export const client = new ApolloClient({
   cache: new InMemoryCache({

@@ -86,6 +86,7 @@ const RInPut = ({ items }) => {
             },
           })}
           type="password"
+          autoComplete="on"
           id={items.item2}
           className={inputCss}
           placeholder={items.item2}
