@@ -179,7 +179,7 @@ function Photo({
                       type="button"
                       onClick={() => {
                         setShowDeleteModal(false);
-                        console.log(id);
+
                         deletePhotoMutation();
                       }}
                     >
