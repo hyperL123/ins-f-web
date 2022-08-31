@@ -17,7 +17,7 @@ function Comment({ comment, photoId }) {
         deleteComment: { ok, error },
       },
     } = result;
-    console.log(error, "THIS IS THE ERROR");
+
     if (ok) {
       cache.evict({ id: `Comment:${comment.id}` });
       cache.modify({
