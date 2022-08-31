@@ -74,7 +74,6 @@ function Comments({
           },
         },
       });
-      console.log(comments, "END");
     }
   };
   const [createaCommentMutation, { loading }] = useMutation(
