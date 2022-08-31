@@ -65,126 +65,131 @@ const Box = () => {
   };
 
   const inputCss = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-2`;
-  const submitCss = `text-white bg-blue-200 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 p-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800s`;
+  const submitCss = `w-full text-white bg-blue-200 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 p-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800s`;
 
   return (
-    <div className="w-128 m-4 flex flex-col items-center justify-center bg-[white]">
-      <Logo />
+    <div className="m-4 flex h-[55rem] w-[25rem] flex-col items-center justify-center bg-[white] ">
+      <div className="m-6">
+        {" "}
+        <Logo />
+      </div>
+
       <Subtitle />
       <div className="mt-6 grid w-80">
         {/* <button type="submit" className="text-white bg-blue-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 p-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800s">Log in with FaceBook</button> */}
       </div>
       <ORBanner />
-      <form onSubmit={handleSubmit(onSubmitValid)}>
-        <div className="mb-6 grid w-80">
-          <input
-            {...register("firstName", {
-              required: "Please enter your first Name",
-              minLength: {
-                value: 1,
-                message: "First Name should be longer than 1 charaters",
-              },
-            })}
-            type="text"
-            name="firstName"
-            id="firstName"
-            className={inputCss}
-            placeholder="First Name"
-            onChange={() => clearErrors("result")}
-          />
-          <input
-            {...register("lastName", {
-              minLength: {
-                value: 5,
-                message: "Last Name should be longer than 5 charaters",
-              },
-            })}
-            type="text"
-            id="lastName"
-            name="lastName"
-            className={inputCss}
-            placeholder="Last Name"
-            onChange={() => clearErrors("result")}
-          />
-          <input
-            {...register("email", {
-              required: "Please enter your Email",
-              minLength: {
-                value: 5,
-                message: "Email should be longer than 5 charaters",
-              },
-            })}
-            type="text"
-            id="email"
-            name="email"
-            className={inputCss}
-            placeholder="Email"
-            onChange={() => clearErrors("result")}
-          />
-          <input
-            {...register("userName", {
-              required: "Please enter your Username",
-              minLength: {
-                value: 5,
-                message: "Username should be longer than 5 charaters",
-              },
-            })}
-            type="text"
-            id="userName"
-            name="userName"
-            className={inputCss}
-            placeholder="Username"
-            onChange={() => clearErrors("result")}
-          />
-          <input
-            {...register("password", {
-              required: "Please enter your Password",
-              minLength: {
-                value: 5,
-                message: "Password should be longer than 5 charaters",
-              },
-            })}
-            type="text"
-            id="password"
-            name="password"
-            className={inputCss}
-            placeholder="Password"
-            onChange={() => clearErrors("result")}
-          />
-          <ErrorMessage
-            errors={errors}
-            name="firstName"
-            render={({ message }) => <p>{message}</p>}
-          />
-          <ErrorMessage
-            errors={errors}
-            name="lastName"
-            render={({ message }) => <p>{message}</p>}
-          />
-          <ErrorMessage
-            errors={errors}
-            name="email"
-            render={({ message }) => <p>{message}</p>}
-          />
-          <ErrorMessage
-            errors={errors}
-            name="userName"
-            render={({ message }) => <p>{message}</p>}
-          />
-          <ErrorMessage
-            errors={errors}
-            name="password"
-            render={({ message }) => <p>{message}</p>}
-          />
+      <form
+        className="flex w-[18rem] flex-col items-center justify-center"
+        onSubmit={handleSubmit(onSubmitValid)}
+      >
+        <input
+          {...register("firstName", {
+            required: "Please enter your first Name",
+            minLength: {
+              value: 1,
+              message: "First Name should be longer than 1 charaters",
+            },
+          })}
+          type="text"
+          name="firstName"
+          id="firstName"
+          className={inputCss}
+          placeholder="First Name"
+          onChange={() => clearErrors("result")}
+        />
+        <input
+          {...register("lastName", {
+            minLength: {
+              value: 5,
+              message: "Last Name should be longer than 5 charaters",
+            },
+          })}
+          type="text"
+          id="lastName"
+          name="lastName"
+          className={inputCss}
+          placeholder="Last Name"
+          onChange={() => clearErrors("result")}
+        />
+        <input
+          {...register("email", {
+            required: "Please enter your Email",
+            minLength: {
+              value: 5,
+              message: "Email should be longer than 5 charaters",
+            },
+          })}
+          type="text"
+          id="email"
+          name="email"
+          className={inputCss}
+          placeholder="Email"
+          onChange={() => clearErrors("result")}
+        />
+        <input
+          {...register("userName", {
+            required: "Please enter your Username",
+            minLength: {
+              value: 5,
+              message: "Username should be longer than 5 charaters",
+            },
+          })}
+          type="text"
+          id="userName"
+          name="userName"
+          className={inputCss}
+          placeholder="Username"
+          onChange={() => clearErrors("result")}
+        />
+        <input
+          {...register("password", {
+            required: "Please enter your Password",
+            minLength: {
+              value: 5,
+              message: "Password should be longer than 5 charaters",
+            },
+          })}
+          type="text"
+          id="password"
+          name="password"
+          className={inputCss}
+          placeholder="Password"
+          onChange={() => clearErrors("result")}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="firstName"
+          render={({ message }) => <p>{message}</p>}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="lastName"
+          render={({ message }) => <p>{message}</p>}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="email"
+          render={({ message }) => <p>{message}</p>}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="userName"
+          render={({ message }) => <p>{message}</p>}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="password"
+          render={({ message }) => <p>{message}</p>}
+        />
 
-          <button type="submit" className={submitCss}>
-            Sign up
-          </button>
-          {errors.result && <p>{errors.result.message}</p>}
-          {accountCreated && (
-            <p>Account successfully created. Please log in now</p>
-          )}
-        </div>
+        <button type="submit" className={submitCss}>
+          Sign up
+        </button>
+        {errors.result && <p>{errors.result.message}</p>}
+        {accountCreated && (
+          <p>Account successfully created. Please log in now</p>
+        )}
 
         <div className="mb-6 grid w-80 gap-6">
           <div className="flex items-center justify-center ">

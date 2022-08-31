@@ -10,6 +10,21 @@ module.exports = {
     extend: {
       width: {
         "32rem": "32rem",
+        "22rem": "22rem",
+        "25rem": "25rem",
+        "1.25rem": "1.25rem",
+        "3.75rem": "3.75rem",
+        "26rem": "26rem",
+        "28rem": "28rem",
+        "30rem": "30rem",
+        "38rem": "38rem",
+      },
+      height: {
+        "32rem": "32rem",
+        "22rem": "22rem",
+        "25rem": "25rem",
+        "1.25rem": "1.25rem",
+        "3.75rem": "3.75rem",
         "26rem": "26rem",
         "28rem": "28rem",
         "30rem": "30rem",

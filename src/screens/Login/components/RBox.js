@@ -10,8 +10,10 @@ import Logo from "../../../shared-components/Logo";
 const RBox = () => {
   const items = { item1: "Phone number, username, or email", item2: "Pasword" };
   return (
-    <div className="m-4 flex w-30rem flex-col items-center justify-center bg-[white]">
-      <Logo />
+    <div className="m-4 flex h-[42rem] w-[26rem] flex-col items-center justify-center bg-[white]">
+      <div className="mb-8 flex w-full justify-center">
+        <Logo />
+      </div>
       <RInPut items={items} />
       <ORBanner />
       <LoginFacebook />

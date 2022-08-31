@@ -61,8 +61,8 @@ const RInPut = ({ items }) => {
     ? `text-white bg-blue-200 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 p-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800s`
     : `text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 p-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800s`;
   return (
-    <form onSubmit={handleSubmit(onSubmitValid)}>
-      <div className="mb-6 grid w-80 gap-6">
+    <form className="w-full px-10" onSubmit={handleSubmit(onSubmitValid)}>
+      <div className="mb-6 grid w-full  gap-6">
         <input
           {...register("username", {
             required: "Please enter your username",
