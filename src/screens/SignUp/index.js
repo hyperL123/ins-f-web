@@ -4,7 +4,7 @@ import Box from "./componments/Box";
 
 const SignUp = () => {
   return (
-    <div className=" bg-gray-100">
+    <div className="h-full bg-gray-100 p-3">
       <div className="flex items-center justify-center">
         <PageTitle title="Sign Up" />
         <Box />

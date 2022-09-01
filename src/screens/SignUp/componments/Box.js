@@ -68,7 +68,7 @@ const Box = () => {
   const submitCss = `w-full text-white bg-blue-200 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 p-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800s`;
 
   return (
-    <div className="m-4 flex h-[55rem] w-[25rem] flex-col items-center justify-center bg-[white] ">
+    <div className="m-4 flex h-[57rem] w-[27rem] flex-col items-center justify-center bg-[white] ">
       <div className="m-6">
         {" "}
         <Logo />
