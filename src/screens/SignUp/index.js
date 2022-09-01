@@ -5,7 +5,7 @@ import Box from "./componments/Box";
 const SignUp = () => {
   return (
     <div className=" bg-gray-100">
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex items-center justify-center">
         <PageTitle title="Sign Up" />
         <Box />
       </div>
