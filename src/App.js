@@ -18,32 +18,30 @@ function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   const darMode = useReactiveVar(darkVar);
   return (
-    <div>
-      <ApolloProvider client={client}>
-        <HelmetProvider>
-          <Router>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  isLoggedIn ? <Layout children={<Home />}></Layout> : <Login />
-                }
-              />
-              <Route path="/sign-up" element={<SignUp />} />
-              <Route
-                path="/users/:userName"
-                element={<Layout children={<Profile />}></Layout>}
-              />
-              <Route
-                path="/users/:userName/edit"
-                element={<Layout children={<EditProfile />}></Layout>}
-              />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Router>
-        </HelmetProvider>
-      </ApolloProvider>
-    </div>
+    <ApolloProvider client={client}>
+      <HelmetProvider>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                isLoggedIn ? <Layout children={<Home />}></Layout> : <Login />
+              }
+            />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route
+              path="/users/:userName"
+              element={<Layout children={<Profile />}></Layout>}
+            />
+            <Route
+              path="/users/:userName/edit"
+              element={<Layout children={<EditProfile />}></Layout>}
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
+      </HelmetProvider>
+    </ApolloProvider>
   );
 }
 
